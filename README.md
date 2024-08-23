@@ -7,4 +7,4 @@ Graphical interface using kdialog to help setup a new Kalpa Desktop installation
 
 ## Screenshots
 
-![]()
+![](https://raw.githubusercontent.com/Z-Ray-Entertainment/kalpa-utils/main/screenshots/kalpa-utils.png)
