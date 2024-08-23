@@ -7,7 +7,8 @@ show_assitant(){
     1 "Setup flatpak auto updater" off \
     2 "Setup SELinux" off \
     3 "Install nVidia drivers" off \
-    4 "Install addional language files" off`
+    4 "Install addional language files" off \
+    5 "Migrate MicroOS Desktop to Kalpa" off`
 
     case $option in
         1)
@@ -22,10 +23,18 @@ show_assitant(){
         4)
         install_language_files
         ;;
+        5)
+        migrate_microos_to_kalpa
+        ;;
         *)
         exit 0
         ;;
     esac
+}
+
+migrate_microos_to_kalpa(){
+    kdesu -c "transactional-update pkg in -y patterns-kalpa-base && transactional-update apply"
+    handle_setup_result "Kalpa Migration"
 }
 
 install_language_files(){
