@@ -6,7 +6,8 @@ show_assitant(){
     option=`kdialog --radiolist "Choose tool:" \
     1 "Setup flatpak auto updater" off \
     2 "Setup SELinux" off \
-    3 "Install nVidia drivers" off`
+    3 "Install nVidia drivers" off \
+    4 "Install addional language files" off`
 
     case $option in
         1)
@@ -18,10 +19,18 @@ show_assitant(){
         3)
         kdialog --msgbox "Not implemented yet"
         ;;
+        4)
+        install_language_files
+        ;;
         *)
         exit 0
         ;;
     esac
+}
+
+install_language_files(){
+    kdesu -c "transactional-update run zypper install-new-recommends -y && transactional-update apply"
+    handle_setup_result "Language files"
 }
 
 handle_setup_result(){
